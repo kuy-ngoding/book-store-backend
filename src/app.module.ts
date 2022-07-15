@@ -1,4 +1,3 @@
-import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
@@ -18,6 +17,7 @@ import { OrderModule } from './modules/order/order.module';
 import { midtrans } from './core/configs/midtrans.config';
 import { MidtransModule } from './lib/midtrans/midtrans.module';
 import { nodemailer } from './core/configs/node-mailer.config';
+import { Module } from '@nestjs/common';
 
 @Module({
   imports: [
