@@ -18,6 +18,7 @@ import { midtrans } from './core/configs/midtrans.config';
 import { MidtransModule } from './lib/midtrans/midtrans.module';
 import { nodemailer } from './core/configs/node-mailer.config';
 import { Module } from '@nestjs/common';
+import { StudentsModule } from './modules/students/students.module';
 
 @Module({
   imports: [
@@ -73,6 +74,7 @@ import { Module } from '@nestjs/common';
     CompanyModule,
     EmailModule,
     OrderModule,
+    StudentsModule
   ],
   controllers: [AppController],
   providers: [AppService],

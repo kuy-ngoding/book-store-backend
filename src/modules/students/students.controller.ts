@@ -1,15 +1,31 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Res } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { BaseResponse } from '../../core/dto/base-response';
+import { baseResponseHelper } from '../../core/helpers/base-response-helper';
 import { CreateStudentRequest } from './dto/requests/create-student.request';
 import { UpdateStudentRequest } from './dto/requests/update-student.request';
-import { StudentsService } from './students.service';
+import { Student } from './entities/student.entity';
+import { Response } from 'express';
+import { StudentService } from './students.service';
 
+@ApiTags('students')
 @Controller('students')
 export class StudentsController {
-  constructor(private readonly studentsService: StudentsService) {}
+  constructor(private readonly studentsService: StudentService) {}
+
+  // @Post()
+  // create(@Body() createStudentDto: CreateStudentRequest) {
+  //   return this.studentsService.create(createStudentDto);
+  // }
 
   @Post()
-  create(@Body() createStudentDto: CreateStudentRequest) {
-    return this.studentsService.create(createStudentDto);
+  async create(
+    @Body() request: CreateStudentRequest,
+    @Res() res: Response,
+  ): Promise<Response<BaseResponse<Student>>> {
+    const result = await this.studentsService.createStudent(request);
+    const response = baseResponseHelper(res, result);
+    return response;
   }
 
   @Get()

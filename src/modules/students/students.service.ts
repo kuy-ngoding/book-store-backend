@@ -1,11 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { CreateStudentRequest } from './dto/requests/create-student.request';
 import { UpdateStudentRequest } from './dto/requests/update-student.request';
+import { Student } from './entities/student.entity';
+import { StudentRepository } from './repositories/student.repository';
 
 @Injectable()
-export class StudentsService {
-  create(createStudentDto: CreateStudentRequest) {
-    return 'This action adds a new student';
+export class StudentService {
+
+  constructor(private studentRepository: StudentRepository) {}
+
+  createStudent(
+    createRequest: CreateStudentRequest,
+  ): Promise<Student> {
+    const profile = Student.fromCreateRequest(createRequest);
+    return this.studentRepository.create(profile);
   }
 
   findAll() {
