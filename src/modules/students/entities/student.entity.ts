@@ -1,8 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema, Types } from 'mongoose';
 import { User } from "src/modules/user/entities/user.entity";
-import { CreateStudentRequest } from '../dto/requests/create-student.request';
-import { UpdateStudentRequest } from '../dto/requests/update-student.request';
+import { StudentCreateRequest } from '../dto/requests/student-create.request';
+import { StudentUpdateRequest } from '../dto/requests/student-update.request';
 
 export type StudentDocument = Student & Document;
 
@@ -52,7 +52,7 @@ export class Student {
   /**
    * Parse CreateStudentRequest to Student.
    */
-  static fromCreateRequest(request: CreateStudentRequest): Student {
+  static fromCreateRequest(request: StudentCreateRequest): Student {
     const student = new Student();
     student.studentName = request.studentName;
     student.address = request.address;
@@ -63,7 +63,7 @@ export class Student {
   /**
    * Parse UpdateStudentRequest to Student.
    */
-  static fromUpdateRequest(request: UpdateStudentRequest): Student {
+  static fromUpdateRequest(request: StudentUpdateRequest): Student {
     const student = new Student();
     student.studentName = request.studentName;
     student.address = request.address;
