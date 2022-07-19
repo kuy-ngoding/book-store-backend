@@ -22,26 +22,31 @@ export class CategoriesService {
   // }
 
 
-  findAll() {
-    return `This action returns all categories`;
+  async findAll(): Promise<Category[]> {
+    return await this.categoryRepository.findAll();
   }
 
   findOne(id: number) {
     return `This action returns a #${id} category`;
   }
 
-  updateCategory(
+  async updateCategory(
+    id: string,
     updateRequest: CategoryUpdateRequest,
     ): Promise<Category> {
-      const profile = Category.fromUpdateRequest(updateRequest);
-      return this.categoryRepository.update(profile);
+      const categoryUpdateData = Category.fromUpdateRequest(updateRequest);
+      const updatedCategory = await this.categoryRepository.update(
+        id,
+        updateRequest,
+      );
+    return; 
     // return `This action updates a #${id} category`;
   }
+  
 
   deleteCategory(
-    deleteRequest: CategoryUpdateRequest,
+    id: string,
     ): Promise<Category> {
-      const profile = Category.fromUpdateRequest(deleteRequest);
-    return this.categoryRepository.delete(profile);
+    return this.categoryRepository.delete(id);
   }
 }

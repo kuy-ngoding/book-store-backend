@@ -16,15 +16,20 @@ export class CategoryRepository {
         return createdProfile.save();
       }
       async update(
-        profile: Category,
+        id: string,
+        updateRequest: Category,
       ): Promise<CategoryDocument> {
-        const updatedProfile = new this.categoryModel(profile);
-        return updatedProfile.save();
+        const categoryId = new Types.ObjectId(id);
+        return this.categoryModel.findByIdAndUpdate(categoryId, updateRequest, {
+          new: true,
+        });
       }
       async delete(
-        profile: Category,
+        id: string,
       ): Promise<CategoryDocument> {
-        const deletedProfile = new this.categoryModel(profile);
-        return deletedProfile.save();
+        return await this.categoryModel.findByIdAndDelete(id);
+      }
+      async findAll(): Promise<CategoryDocument[]> {
+        return await this.categoryModel.find();
       }
     }

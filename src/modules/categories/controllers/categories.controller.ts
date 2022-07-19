@@ -19,7 +19,7 @@ export class CategoriesController {
   //   return this.categoriesService.create(categoryCreateRequest);
   // }
 
-  @Post('/')
+  @Post('/create-category')
   async create(
     @Body() request: CategoryCreateRequest,
     @Res() res: Response,
@@ -29,32 +29,37 @@ export class CategoriesController {
     return response;
   }
 
-  @Get()
-  findAll() {
-    return this.categoriesService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.categoriesService.findOne(+id);
-  }
-
-  @Put('/')
-  async update(
-    @Body() request: CategoryUpdateRequest,
+  @Get('/')
+  async findAll(
     @Res() res: Response,
-  ): Promise<Response<BaseResponse<Category>>> {
-    const result = await this.categoriesService.updateCategory(request);
+  ): Promise<Response<BaseResponse<Category[]>>> {
+    const result = await this.categoriesService.findAll();
     const response = baseResponseHelper(res, result);
     return response;
   }
 
-  @Delete('/')
-  async delete(
-    @Body() request: CategoryUpdateRequest,
+  @Get('/:id')
+  findOne(@Param('id') id: string) {
+    return this.categoriesService.findOne(+id);
+  }
+
+  @Put('/update-category/:id')
+  async update(
+    @Param('id') id: string,
+    @Body() updateRequest: CategoryUpdateRequest,
     @Res() res: Response,
   ): Promise<Response<BaseResponse<Category>>> {
-    const result = await this.categoriesService.deleteCategory(request);
+    const result = await this.categoriesService.updateCategory(id, updateRequest);
+    const response = baseResponseHelper(res, result);
+    return response;
+  }
+
+  @Delete('/delete-category/:id')
+  async delete(
+    @Param('id') id: string,
+    @Res() res: Response,
+  ): Promise<Response<BaseResponse<Category>>> {
+    const result = await this.categoriesService.deleteCategory(id);
     const response = baseResponseHelper(res, result);
     return response;
   }
