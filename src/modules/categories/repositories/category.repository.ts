@@ -15,4 +15,16 @@ export class CategoryRepository {
         // return createdProfile.save();
         return createdProfile.save();
       }
+      async update(
+        profile: Category,
+      ): Promise<CategoryDocument> {
+        const updatedProfile = new this.categoryModel(profile);
+        return updatedProfile.save();
+      }
+      async delete(
+        profile: Category,
+      ): Promise<CategoryDocument> {
+        const deletedProfile = new this.categoryModel(profile);
+        return deletedProfile.save();
+      }
     }

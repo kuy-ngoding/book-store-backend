@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { profile } from 'console';
+import { Profile } from '../../profile/entities/profile.entity';
 import { CategoryCreateRequest } from '../dto/request/category-create.request';
 import { CategoryUpdateRequest } from '../dto/request/category-update.request';
 import { Category } from '../entities/category.entity';
@@ -19,6 +21,7 @@ export class CategoriesService {
   //   return 'This action adds a new category';
   // }
 
+
   findAll() {
     return `This action returns all categories`;
   }
@@ -27,11 +30,18 @@ export class CategoriesService {
     return `This action returns a #${id} category`;
   }
 
-  update(id: number, updateCategoryDto: CategoryUpdateRequest) {
-    return `This action updates a #${id} category`;
+  updateCategory(
+    updateRequest: CategoryUpdateRequest,
+    ): Promise<Category> {
+      const profile = Category.fromUpdateRequest(updateRequest);
+      return this.categoryRepository.update(profile);
+    // return `This action updates a #${id} category`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} category`;
+  deleteCategory(
+    deleteRequest: CategoryUpdateRequest,
+    ): Promise<Category> {
+      const profile = Category.fromUpdateRequest(deleteRequest);
+    return this.categoryRepository.delete(profile);
   }
 }

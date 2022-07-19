@@ -45,7 +45,13 @@ static fromUpdateRequest(request: CategoryUpdateRequest): Category {
     const category = new Category();
     category.categoryName = request.categoryName;
     return category;
-}
+  }
+
+static fromDeleteRequest(request: CategoryUpdateRequest): Category {
+    const category = new Category();
+    category.categoryName = request.categoryName;
+    return category;
+  }
 }
 
 export const CategorySchema = SchemaFactory.createForClass(Category);
