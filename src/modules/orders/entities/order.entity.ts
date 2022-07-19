@@ -4,6 +4,7 @@ import { Document, Schema as MongooseSchema, Types } from 'mongoose';
 import { User } from "src/modules/user/entities/user.entity";
 import { OrderCreateRequest } from "../dto/requests/order-create.request";
 import { OrderUpdateRequest } from "../dto/requests/order-update.request";
+import { productDetailInterface } from "../interfaces/product-detail.interface";
 
 export type OrderDocument = Order & Document;
 
@@ -21,14 +22,10 @@ export class Order {
      * @example iyoy, kiru, umar
      */
     @Prop({ required: true })
-    productName: string;
-
-    @Prop({ required: true })
-    productPrice: number;
+    detailProduct: productDetailInterface;
     
     @Prop({ required: true })
     productTotal: number;
-
 
 
 
