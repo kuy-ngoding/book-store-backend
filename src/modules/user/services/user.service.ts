@@ -1,9 +1,6 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 
-import {
-  comparePassword,
-  hashPassword,
-} from '../../../core/utils/passwordHash';
+import { comparePassword, hashPassword,} from '../../../core/utils/passwordHash';
 import { SetNewPasswordRequest } from '../../auth/dtos/requests/set-new-password.request';
 import { User } from '../entities/user.entity';
 import { ChangePasswordRequest } from '../dtos/requests/change-password.request';

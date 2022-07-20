@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { CreateStudentRequest } from './dto/requests/create-student.request';
-import { UpdateStudentRequest } from './dto/requests/update-student.request';
-import { StudentsService } from './students.service';
+import { CreateStudentRequest } from '../dto/requests/create-student.request';
+import { UpdateStudentRequest } from '../dto/requests/update-student.request';
+import { StudentsService } from '../services/students.service';
 
 @Controller('students')
 export class StudentsController {

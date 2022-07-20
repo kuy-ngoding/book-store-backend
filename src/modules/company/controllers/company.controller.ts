@@ -73,7 +73,10 @@ export class CompanyController {
 
   @Get('/get-user-company')
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(RoleEnum.SUPER_USER, RoleEnum.BUSINESS_OWNER, RoleEnum.SUPERVISOR)
+  @Roles(
+    RoleEnum.SUPER_USER, 
+    RoleEnum.BUSINESS_OWNER, 
+    RoleEnum.SUPERVISOR)
   async getUserCompanyPaginated(
     @CurrentUser() user: ICurrentUser,
     @Query() filterRequest: CompanyFilterRequest,
@@ -110,7 +113,7 @@ export class CompanyController {
     return baseResponseHelper(res, company);
   }
 
-  //update company by id with put
+  // update company by id with put
   // @ApiOperation({ summary: 'Update company by id.' })
   // @ApiBearerAuth('JWT-Auth')
   // @UseGuards(JwtAuthGuard)

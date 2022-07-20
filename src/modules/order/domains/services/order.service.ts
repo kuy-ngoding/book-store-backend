@@ -124,7 +124,7 @@ export class OrderService {
   ): Promise<Order> {
     const session = await this.connection.startSession();
     session.startTransaction();
-    try {
+    try {      
       const orderData = Order.fromUpdateRequest(updateRequest);
       const updatedOrder = await this.orderRepository.updateOrderById(
         id,
