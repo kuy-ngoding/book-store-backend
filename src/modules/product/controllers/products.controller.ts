@@ -39,7 +39,7 @@ export class ProductsController {
   //   return this.productsService.create(productCreateRequest);
   // }
 
-  @Put('/update-product/:id')
+  @Put('/products/:id')
   async updateProduct(
     @Param('id') id: string,
     @Body() updateProduct: ProductUpdateRequest,

@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { InjectConnection } from '@nestjs/mongoose';
+import { Connection } from 'nodemailer/lib/mailer';
 import { ProductCreateRequest } from '../dtos/requests/product-create.request';
 import { ProductFilterRequest } from '../dtos/requests/product-filter.request';
 import { ProductUpdateRequest } from '../dtos/requests/product-update.request';
@@ -7,11 +9,11 @@ import { ProductRepository } from '../repositories/product.repository';
 
 @Injectable()
 export class ProductsService {
-  async findById(id: string): Promise<Product> {
-    return this.productRepository.getOrderById(id);
-  }
-   
-  productRepository: any;
+ 
+  constructor(
+    @InjectConnection() private readonly connection: Connection,
+    private productRepository: ProductRepository,
+  ) {}
 
   productCreate(productCreateRequest: ProductCreateRequest) {
     const productData = Product.fromCreateRequest(productCreateRequest);
@@ -34,8 +36,5 @@ export class ProductsService {
     return `This action removes a #${id} product`;
   }
 
-  async deletecById(id: string) {
-    return this.productRepository.deleteById(id);
-  }
 
 }
