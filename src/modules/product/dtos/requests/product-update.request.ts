@@ -1,5 +1,5 @@
 import { ApiPropertyOptional, PartialType } from '@nestjs/swagger';
-import {  IsNumber, IsOptional, IsString, Min } from 'class-validator';
+import {  IsNotEmpty, IsNumber, IsOptional, IsString, Min } from 'class-validator';
 import { ProductCreateRequest} from './product-create.request';
 
 export class ProductUpdateRequest extends PartialType(ProductCreateRequest) {

@@ -7,7 +7,7 @@ export class ProductFilterRequest extends BaseFilterRequest {
   /**
    * product name for filterRequest
    */
-  @ApiPropertyOptional()
+  @ApiPropertyOptional() 
   @IsOptional()
   @IsString()
   productName?: string;
@@ -15,7 +15,7 @@ export class ProductFilterRequest extends BaseFilterRequest {
   /**
    * product price for filterRequest
    */
-  @ApiPropertyOptional()
+ 
   @IsOptional()
   @IsNumber()
   @Min(1)
@@ -24,9 +24,32 @@ export class ProductFilterRequest extends BaseFilterRequest {
   /**
    * product description for filterRequest
    */
-  @ApiPropertyOptional()
+  
   @IsOptional()
   @IsString()
   productDecsription?: string;
 
+  // export class UserFilterRequest extends BaseFilterRequest {
+  //   @IsOptional()
+  //   @IsString()
+  //   username?: string;
+  
+  //   @IsOptional()
+  //   @IsString()
+  //   fullName?: string;
+  
+  //   @IsOptional()
+  //   @IsString()
+  //   email?: string;
+  
+  //   @IsOptional()
+  //   role?: RoleEnum;
+  
+  //   @IsOptional()
+  //   phoneNumber?: string;
+  
+  //   @IsOptional()
+  //   @IsString()
+  //   creatorId?: string;
+  // }
 }

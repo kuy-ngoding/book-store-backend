@@ -15,9 +15,7 @@ export type ProductDocument = Product & Document;
   id: false,
 })
 export class Product {
-  static fromFilterRequest(productFilterRequest: ProductFilterRequest) {
-    throw new Error('Method not implemented.');
-  }
+
   readonly _id?: string;
   /**
    * productName

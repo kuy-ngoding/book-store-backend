@@ -26,15 +26,20 @@ export class ProductsService {
   }
 
 
- async updateProduct(productUpdateRequest: ProductUpdateRequest, id: string):Promise<Product> {
-    const productData = Product.fromUpdateRequest(productUpdateRequest);
-    return await this.productRepository.updateProduct (id, productData);
+//  async updateProduct(productUpdateRequest: ProductUpdateRequest, id: string):Promise<Product> {
+//     const productData = Product.fromUpdateRequest(productUpdateRequest);
+//     return await this.productRepository.updateProduct (id, productData);
+//   }
+
+  async updateProduct(
+    id: string,
+    productData: ProductUpdateRequest,
+  ): Promise<Product> {
+    const updateData = Product.fromUpdateRequest(productData);
+  
+    return await this.productRepository.updateProduct(id, updateData);
   }
   
-
-  remove(id: number) {
-    return `This action removes a #${id} product`;
-  }
 
 
 }
