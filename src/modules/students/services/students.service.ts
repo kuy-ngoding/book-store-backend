@@ -51,14 +51,6 @@ export class StudentService {
     await this.findStudndtById(id);
 
     const updateStudentData = Student.fromUpdateRequest(updateRequest);
-    // if (updateStudentData.password) {
-    //   updateStudentData.password = await hashPassword(updateStudentData.password);
-    // }
-    // if (updateRequest.phoneNumber) {
-    //   updateStudentData.phoneNumber = formatPhoneNumber(
-    //     updateRequest.phoneNumber,
-    //   ).substring(1);
-    // }
     return await this.studentRepository.updateById(id, updateStudentData);
   }
 

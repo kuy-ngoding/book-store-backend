@@ -1,10 +1,8 @@
-import { Prop, Schema } from "@nestjs/mongoose";
-import { Student } from "../../students/entities/student.entity";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema, Types } from 'mongoose';
 import { User } from "src/modules/user/entities/user.entity";
-import { OrderCreateRequest } from "../dto/requests/order-create.request";
-import { OrderUpdateRequest } from "../dto/requests/order-update.request";
 import { productDetailInterface } from "../interfaces/product-detail.interface";
+import { OrderCreateRequest } from "../dto/requests/order-create.request";
 
 export type OrderDocument = Order & Document;
 
@@ -16,17 +14,19 @@ export type OrderDocument = Order & Document;
 })
 
 export class Order {
-    readonly _id?: string;
+    
     /**
      * Student Name
      * @example iyoy, kiru, umar
      */
+    @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Product' })
+    productId: string;
+     
     @Prop({ required: true })
-    detailProduct: productDetailInterface;
-    
-    @Prop({ required: true })
-    productTotal: number;
+    orderTotal: number;
 
+    @Prop()
+    orderNote:string;
 
 
     @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'User' })
@@ -34,10 +34,13 @@ export class Order {
 
   createdBy?: User;
 
-   /**
-   * Parse CreateStudentRequest to Student.
-   */
-    
-    
-    
+
 }
+export const OrderSchema = SchemaFactory.createForClass(Order);
+
+OrderSchema.virtual('createdBy', {
+  ref: 'User',
+  localField: 'creatorId',
+  foreignField: '_id',
+  justOne: true,
+});
