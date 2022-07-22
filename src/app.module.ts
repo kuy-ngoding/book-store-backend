@@ -19,6 +19,8 @@ import { MidtransModule } from './lib/midtrans/midtrans.module';
 import { nodemailer } from './core/configs/node-mailer.config';
 import { Module } from '@nestjs/common';
 import { CategoriesModule } from './modules/categories/categories.module';
+import { StudentsModule } from './modules/students/students.module';
+import { OrdersModule } from './modules/orders/orders.module';
 
 @Module({
   imports: [
@@ -75,6 +77,8 @@ import { CategoriesModule } from './modules/categories/categories.module';
     EmailModule,
     OrderModule,
     CategoriesModule,
+    StudentsModule,
+    OrdersModule
   ],
   controllers: [AppController],
   providers: [AppService],
