@@ -18,10 +18,10 @@ export type CategoryDocument = Category & Document;
 })
 export class Category {
     readonly _id?: string;
-   @Prop({
+  @Prop({
     required: true
-   })
-   categoryName: string; 
+  })
+  categoryName: string; 
 
 
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'User' })

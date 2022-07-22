@@ -1,6 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { profile } from 'console';
-import { Profile } from '../../profile/entities/profile.entity';
 import { CategoryCreateRequest } from '../dto/request/category-create.request';
 import { CategoryUpdateRequest } from '../dto/request/category-update.request';
 import { Category } from '../entities/category.entity';
@@ -39,8 +37,7 @@ export class CategoriesService {
         id,
         updateRequest,
       );
-    return; 
-    // return `This action updates a #${id} category`;
+    return;
   }
   
 

@@ -7,7 +7,6 @@ import { CategoriesService } from '../services/categories.service';
 import { baseResponseHelper } from '../../../core/helpers/base-response-helper';
 import { Category } from '../entities/category.entity';
 import { BaseResponse } from '../../../core/dto/base-response';
-import { request } from 'http';
 
 @ApiTags('categories')
 @Controller('categories')
@@ -39,7 +38,8 @@ export class CategoriesController {
   }
 
   @Get('/:id')
-  findOne(@Param('id') id: string) {
+  findOne(
+    @Param('id') id: string) {
     return this.categoriesService.findOne(+id);
   }
 
