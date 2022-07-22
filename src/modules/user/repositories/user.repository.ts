@@ -53,6 +53,18 @@ export class UserRepository {
       .exec();
   }
 
+  // async findAllUserPaginated(
+  //   request: UserFilterRequest,
+  // ): Promise<UserDocument[]> {
+  //   const { page, limit } = request;
+  //   const offset = (page - 1) * limit;
+  //   return await this.userModel
+  //     .find()
+  //     .skip(offset)
+  //     .limit(limit)
+  //     .exec();
+  // }
+
   async findPaginate() {
     return this.userModel.find().exec();
   }

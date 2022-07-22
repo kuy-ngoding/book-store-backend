@@ -1,7 +1,7 @@
 import { Type } from "class-transformer";
 import { IsEAN, IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
-export class CreateStudentRequest {
+export class StudentCreateRequest {
       /**
    * Student Name
    * @example iyoy, kiru, umar
