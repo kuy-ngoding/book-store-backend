@@ -35,6 +35,22 @@ export class StudentRepository{
         );
       }
 
+      async countStudent(request?: StudentFilterRequest): Promise<number> {
+        return this.studentModel.countDocuments();
+      }
+
+      async findAllStudentPaginated(
+        request: StudentFilterRequest,
+      ): Promise<StudentDocument[]> {
+        const { page, limit } = request;
+        const offset = (page - 1) * limit;
+        return await this.studentModel
+          .find()
+          .skip(offset)
+          .limit(limit)
+          .exec();
+      }
+
       async getAllStudent(
       ): Promise<Student[]> {
         return await this.studentModel

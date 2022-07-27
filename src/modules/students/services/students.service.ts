@@ -30,6 +30,15 @@ export class StudentService {
     return `This action returns a #${id} student`;
   }
 
+  async findAllStudentPaginated(
+    filterRequest: StudentFilterRequest,
+  ): Promise<Student[]> {
+    return await this.studentRepository.findAllStudentPaginated(filterRequest);
+  }
+
+  async countStudent(filterRequest: StudentFilterRequest): Promise<number> {
+    return await this.studentRepository.countStudent(filterRequest);
+  }
   // update(id: number, updateStudentDto: StudentUpdateRequest) {
   //   return `This action updates a #${id} student`;
   // }

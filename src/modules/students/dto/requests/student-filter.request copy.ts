@@ -1,7 +1,8 @@
 import { Type } from "class-transformer";
 import { IsEAN, IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
+import { BaseFilterRequest } from "../../../../core/dto/base-filter-request.dto";
 
-export class StudentFilterRequest {
+export class StudentFilterRequest extends BaseFilterRequest {
       /**
    * Student Name
    * @example iyoy, kiru, umar

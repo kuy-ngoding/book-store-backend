@@ -9,6 +9,8 @@ import { StudentCreateRequest } from '../dto/requests/student-create.request';
 import { StudentUpdateRequest } from '../dto/requests/student-update.request';
 import { UserFilterRequest } from '../../user/dtos/requests/user-filter.request';
 import { StudentFilterRequest } from '../dto/requests/student-filter.request copy';
+import { PaginatedResponse } from '../../../core/dto/paginated-response.dto';
+import { paginationHelper } from '../../../core/helpers/pagination-helper';
 
 @ApiTags('students')
 @Controller('students')
@@ -29,6 +31,26 @@ export class StudentsController {
   // findAll() {
   //   return this.studentsService.findAll();
   // }
+
+  @Get('/students')
+  async getAllUserPaginated(
+    @Query() filterRequest: StudentFilterRequest,
+    @Res() res: Response,
+  ): Promise<Response<PaginatedResponse<Student[]>>> {
+    const { limit, page } = filterRequest;
+    const paginatedBot = await this.studentsService.findAllStudentPaginated(
+      filterRequest,
+    );
+    const botCount = await this.studentsService.countStudent(filterRequest);
+    const response = paginationHelper<Student[]>(
+      res,
+      paginatedBot,
+      botCount,
+      page,
+      limit,
+    );
+    return response;
+  }
 
   @Get()
   async getAll(
