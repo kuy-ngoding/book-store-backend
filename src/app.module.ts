@@ -21,6 +21,7 @@ import { Module } from '@nestjs/common';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { StudentsModule } from './modules/students/students.module';
 import { OrdersModule } from './modules/orders/orders.module';
+import { TeachersModule } from './modules/teachers/teachers.module';
 
 @Module({
   imports: [
@@ -78,7 +79,8 @@ import { OrdersModule } from './modules/orders/orders.module';
     OrderModule,
     CategoriesModule,
     StudentsModule,
-    OrdersModule
+    OrdersModule,
+    TeachersModule
   ],
   controllers: [AppController],
   providers: [AppService],
